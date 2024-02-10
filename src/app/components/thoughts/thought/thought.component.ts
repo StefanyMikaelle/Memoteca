@@ -11,14 +11,13 @@ import { Pensamento } from 'src/app/model/thought';
 export class ThoughtComponent implements OnInit {
 
   @Input() pensamento : Pensamento = {
-    conteudo: '',
-    autoria: '',
-    modelo: ''
+    conteudo: 'dsfdsf',
+    autoria: 'fdsgds',
+    modelo: 'modelo3'
   }
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.pensamento);
   }
 
   larguraPensamento(): string {

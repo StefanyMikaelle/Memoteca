@@ -11,6 +11,8 @@ import { AppRoutingModule } from './app-routing-module';
 import { ListThoughtComponent } from './views/list-thought/list-thought.component';
 import { ThoughtComponent } from './components/thoughts/thought/thought.component';
 import { HttpClientModule} from '@angular/common/http';
+import { DeleteThoughtComponent } from './views/delete-thought/delete-thought.component';
+import { EditThoughtComponent } from './views/edit-thought/edit-thought.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { HttpClientModule} from '@angular/common/http';
     FooterComponent,
     CreateThoughtComponent,
     ListThoughtComponent,
-    ThoughtComponent
+    ThoughtComponent,
+    DeleteThoughtComponent,
+    EditThoughtComponent
   ],
   imports: [
     BrowserModule,

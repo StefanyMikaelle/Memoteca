@@ -10,8 +10,8 @@ import { ThoughtService } from 'src/app/services/thought/thoughtHttp.service';
 export class CreateThoughtComponent implements OnInit {
 
   pensamento = {
-    conteudo: 'Aprendendo Angular',
-    autoria: 'Dev',
+    conteudo: '',
+    autoria: '',
     modelo: ''
   }
 
