@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Pensamento } from 'src/app/model/thought';
 import { Observable } from 'rxjs';
 
@@ -11,9 +11,27 @@ export class ThoughtService {
 
   constructor(private http: HttpClient) {}
 
-  listar(): Observable<Pensamento[]> {
-    return this.http.get<Pensamento[]>(this.API);
+  listar(pagina:number, filtro: string, favorito: boolean): Observable<Pensamento[]> {
+
+    const itensPorPagina = 2;
+    let params = new HttpParams()
+                      .set("_page", pagina)
+                      .set("_limit", itensPorPagina)
+
+    //GET /posts?_page=7&_limit=20
+    //*Não é uma boa prática dessa forma sem usar o HttpParams()
+    //return this.http.get<Pensamento[]>(`${this.API}?_page=${pagina}&_limit=${itensPorPagina}`);
+
+    if(filtro.trim().length>1){
+      params = params.set("q", filtro);
+    }
+
+    if(favorito){
+      params = params.set("favorito", true)
+    }
+    return this.http.get<Pensamento[]>(this.API, {params})
   }
+
 
   criar(pensamento: Pensamento): Observable<Pensamento> {
     return this.http.post<Pensamento>(this.API, pensamento);
@@ -32,7 +50,10 @@ export class ThoughtService {
   editar(pensamento: Pensamento): Observable<Pensamento> {
     const url = `${this.API}/${pensamento.id}`
     return this.http.put<Pensamento>(url, pensamento )
-
   }
 
+  mudarFavorito(pensamento: Pensamento): Observable<Pensamento>{
+    pensamento.favorito = !pensamento.favorito;
+    return this.editar(pensamento)
+  }
 }
