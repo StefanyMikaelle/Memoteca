@@ -1,0 +1,8 @@
+version: '3.7'
+
+services:
+  memoteca:
+    image: stefanymikaelle/memoteca:v2
+    container_name: memotecav2
+    ports:
+      - "8099:80"

@@ -13,7 +13,7 @@ export class ThoughtService {
 
   listar(pagina:number, filtro: string, favorito: boolean): Observable<Pensamento[]> {
 
-    const itensPorPagina = 2;
+    const itensPorPagina = 6;
     let params = new HttpParams()
                       .set("_page", pagina)
                       .set("_limit", itensPorPagina)
